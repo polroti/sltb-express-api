@@ -5,7 +5,7 @@
 
 
 const mongoose = require('mongoose')
-
+const Booking = require('../Entities/Booking')
 exports.AddBooking = (req,res,next)=>{
     
 }
