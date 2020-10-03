@@ -1,6 +1,7 @@
 /* 
    ====================== PLEASE ADD YOUR CHANGE DESCRIPTIONS HERE ==============
     28-09-2020 - Manoj Created Booking.js
+    01-10-2020 - Changed route to routeId, Added module export
 */
 
 const mongoose=require('mongoose');
@@ -19,7 +20,7 @@ const BookingSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.Boolean,
         required:true
     },
-    route:{
+    routeId:{
         type:mongoose.Schema.Types.ObjectId,
         required:true,
         ref:'Routes'
@@ -78,3 +79,4 @@ const BookingSchema = new mongoose.Schema({
 
 })
 
+module.exports = mongoose.model('Booking',BookingSchema)
