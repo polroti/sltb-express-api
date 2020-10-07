@@ -3,6 +3,8 @@
     28-09-2020 - Manoj Created addBooking.js
     01-10-2020 - Started Adding addbooking method
     03-10-2020 - finished the newBookingRecord signature and added the body for method getTravelTime()
+    07-10-2020 - booking creation result and error handling
+
 */
 
 
@@ -29,7 +31,18 @@ exports.AddBooking = (req,res,next)=>{
         price: req.body.price
     })
 
-    newBookingRecord.save();
+    newBookingRecord.save().then(result=>{
+        console.log('Booking Saved!');
+        res.status(201).json({
+            message:"Booking Created Successfully!",
+            booking: result
+        });
+    }).catch(err=>{
+        console.log('Error saving booking');
+        res.status(500).json({
+            error:err
+        })
+    })
     
 }
 
