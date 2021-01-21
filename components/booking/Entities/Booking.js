@@ -24,7 +24,7 @@ const BookingSchema = new mongoose.Schema({
     routeId:{
         type:mongoose.Schema.Types.ObjectId,
         required:true,
-        ref:'Routes'
+        ref:'Route'
     },
     busId:{
         type:mongoose.Schema.Types.ObjectId,
