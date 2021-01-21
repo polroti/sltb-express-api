@@ -1,9 +1,10 @@
 /* 
    ====================== PLEASE ADD YOUR CHANGE DESCRIPTIONS HERE ==============
     28-09-2020 - Manoj Created addBooking.js
-    01-10-2020 - Started Adding addbooking method
-    03-10-2020 - finished the newBookingRecord signature and added the body for method getTravelTime()
-    07-10-2020 - booking creation result and error handling
+    01-10-2020 - Manoj - Started Adding addbooking method
+    03-10-2020 - Manoj - finished the newBookingRecord signature and added the body for method getTravelTime()
+    07-10-2020 - Manoj - booking creation result and error handling
+    21-01-2021 - Manoj - added bookingId & userId to new save payload
 
 */
 
@@ -12,12 +13,13 @@ const mongoose = require('mongoose')
 const Booking = require('../Entities/Booking')
 exports.AddBooking = (req,res,next)=>{
     
-    let travelTime = getTravelTime(pickupLocation,destination)
+    let travelTime = getTravelTime(req.body.pickupLocation,req.body.destination)
     
-    bookingId = Math.random()*10000000 + req.userId + Date.now().toString
+    const bookingId = Math.random()*10000000 + req.userId + Date.now().toString()
     const newBookingRecord = new Booking({
         _id:mongoose.Schema.Types.ObjectId(),
-        UserId: req.body.userId,
+        bookingId:bookingId,
+        userId: req.body.userId,
         isPaid : false,
         routeId: req.body.routeId,
         busId : req.body.BusId,
@@ -29,7 +31,7 @@ exports.AddBooking = (req,res,next)=>{
         isConfirmed:false,
         serviceType:req.body.serviceType,
         price: req.body.price
-    })
+    });
 
     newBookingRecord.save().then(result=>{
         console.log('Booking Saved!');

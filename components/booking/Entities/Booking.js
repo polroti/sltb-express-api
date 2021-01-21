@@ -1,18 +1,19 @@
 /* 
    ====================== PLEASE ADD YOUR CHANGE DESCRIPTIONS HERE ==============
     28-09-2020 - Manoj Created Booking.js
-    01-10-2020 - Changed route to routeId, Added module export
+    01-10-2020 - Manoj - Changed route to routeId, Added module export
+    21-01-2021 - Manoj - changed bookingId & userId to camel case
 */
 
 const mongoose=require('mongoose');
 
 const BookingSchema = new mongoose.Schema({
     _id : mongoose.Schema.Types.ObjectId,
-    BookingId :{
+    bookingId :{
         type:String,
         required:true
     },
-    UserId:{
+    userId:{
         type: mongoose.Schema.Types.ObjectId,
         ref:'User'
     },
