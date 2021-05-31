@@ -1,14 +1,14 @@
 /* 
    ====================== PLEASE ADD YOUR CHANGE DESCRIPTIONS HERE ==============
-    21-01-2021 - Manoj -  created the file, added username, fullname, password
-    31-05-2021 - Manoj -  added new fields: facebookuid, userid
+    31-05-2021 - Manoj -  created the file, added googleUid,userid 
+    
 */
 
 const mongoose = require("mongoose");
 
-const facebookUserSchema = new mongoose.Schema({
+const googleUserSchema = new mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
-  faceBookUid: {
+  googleUid: {
     type: String,
     required: true,
   },
@@ -18,4 +18,4 @@ const facebookUserSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("FacebookUser", facebookUserSchema);
+module.exports = mongoose.model("GoogleUser", googleUserSchema);
