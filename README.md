@@ -6,7 +6,7 @@
 
 - The latest version of Git should be installed. If not get it [here](https://git-scm.com/downloads)
 
-- Latest LTS - version of Nodejs. Get it [here](https://nodejs.org/en/download/)
+- Latest version of Nodejs should be installed. Get it [here](https://nodejs.org/en/download/)
 
 ## To run this project
 
