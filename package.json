@@ -21,6 +21,7 @@
   "homepage": "https://github.com/asimo-git/sltb-express-api#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.7"
   },
   "devDependencies": {
