@@ -4,7 +4,7 @@
   "description": "API for Sri Lankan Transport Board Bus booking App",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,10 @@
   "homepage": "https://github.com/asimo-git/sltb-express-api#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }
