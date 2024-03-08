@@ -18,7 +18,7 @@ const BookingSchema = new mongoose.Schema({
         ref:'User'
     },
     isPaid:{
-        type:mongoose.Schema.Types.Boolean,
+        type: Boolean,
         required:true
     },
     routeId:{
@@ -37,12 +37,12 @@ const BookingSchema = new mongoose.Schema({
     },
     pickupLocation:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'Place',
+        ref:'TransitNode',
         required:true
     },
     destination:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'Place',
+        ref:'TransitNode',
         required:true
     },
     departureTime:{
