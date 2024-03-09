@@ -14,9 +14,11 @@ const dbName = "sltb_api_db";
 
 //Define Routes
 const bookingRoute = require("./components/booking/BookingRoutes");
-
+const transitNodeRoute = require("./components/places/routes/transitNodeRoutes");
 //Use Routes
 sltbApi.use("/api/booking", bookingRoute);
+
+sltbApi.use('/api/transit/nodes', transitNodeRoute)
 
 //db connection
 mongoose
@@ -24,7 +26,8 @@ mongoose
     `mongodb+srv://${secrets.mongousername}:${secrets.mongopass}@${secrets.mongourl}/${dbName}`,
     {
       useNewUrlParser: true,
-      useUnifiedTopology: true,
+      useUnifiedTopology: true,useCreateIndex:true
+
     }
   )
   .then(() => {

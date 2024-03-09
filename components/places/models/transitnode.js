@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-const transitNodeSchema = new mongoose.Schema({
+const transitNodeSchema = Schema({
   _id: mongoose.Schema.Types.ObjectId,
   place_id: {
     type: String,
@@ -21,6 +22,7 @@ const transitNodeSchema = new mongoose.Schema({
     required: true,
   },
   type:{
+    type:String,
     enum:['BUS_HALT','BUS_STAND'],
     required:true
   },
@@ -31,8 +33,13 @@ const transitNodeSchema = new mongoose.Schema({
     type:Boolean,
     required: true,
     default: false
+  },
+  province:{
+    type:String,
+    enum: ['WP','SP','EP','NP','NW','CP','NC','UP','SG'],
+    required: true
   }
 
 });
 
-module.exports = mongoose.model('TransitNode',BookingSchema)
+module.exports = mongoose.model('TransitNode',transitNodeSchema);
