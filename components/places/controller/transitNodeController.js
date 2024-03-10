@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const TransiteNode = require("../models/transitnode");
 
 exports.createTransiteNode = (req, res, next) => {
-  const { name_en, name_ta, name_si, type, address, isStartOrEndNode } =
+  const { name_en, name_ta, name_si, type, address, isStartOrEndNode, province } =
     req.body;
 
   const newTransitNode = new TransiteNode({
@@ -14,6 +14,7 @@ exports.createTransiteNode = (req, res, next) => {
     type: type,
     address: address,
     isStartOrEndNode: isStartOrEndNode,
+    province: province
   });
 
   newTransitNode.save().then((savedTransitNode) => {
@@ -33,7 +34,7 @@ exports.checkIfTransitNodeExistsByNameEn = (req, res, next) => {
     .then((foundTrNode) => {
       if (foundTrNode) {
         res.status(409).json({
-          error: "Transit Node already exists",
+          error: "Transit Node already exists by name",
           code: "TRANSIT_NODE_EXISTS",
         });
       } else {
@@ -43,15 +44,22 @@ exports.checkIfTransitNodeExistsByNameEn = (req, res, next) => {
 };
 
 exports.generatePlaceId = (req, res, next) => {
-  const randomChars = name_en
-    .split("")
-    .sort(() => 0.5 - Math.random())
-    .slice(0, 3)
-    .join("");
-  const timestamp = Date.now().toString(36); // Convert current timestamp to base36 string
-  const id = randomChars + timestamp; // Combine random characters and timestamp
+  // Remove spaces and convert to uppercase
+  inputStr = req.body.name_en.replace(/\s/g, "").toUpperCase();
 
-  req.place_id = id.slice(0, 10);
+  // Take the first three characters of the input string
+  const firstThreeChars = inputStr.substring(0, 3);
+
+  // Count the number of characters in the input string
+  const numChars = inputStr.length;
+
+  // Generate the numeric part of the ID with leading zeros
+  const randomNumericPart = Math.floor(Math.random() * 100000).toString().padStart(5, '0');
+
+  // Concatenate the prefix, first three characters, and numeric part
+  const generatedId = req.body.province + firstThreeChars + randomNumericPart;
+
+  req.place_id = generatedId.toUpperCase() + "454545454";
 
   next();
 };
@@ -63,6 +71,7 @@ exports.checkIfTransitNodeExistsByPlaceId = (req, res, next) => {
     .exec()
     .then((foundTrNode) => {
       if (foundTrNode) {
+        console.log(req.place_id);
         res.status(409).json({
           error: "Transit Node already exists",
           code: "TRANSIT_NODE_EXISTS",

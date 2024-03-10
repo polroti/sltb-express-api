@@ -11,6 +11,7 @@ const PORT = 5000 || process.env.PORT;
 const secrets = require("./secrets.json");
 
 const dbName = "sltb_api_db";
+sltbApi.use(express.json());
 
 //Define Routes
 const bookingRoute = require("./components/booking/BookingRoutes");

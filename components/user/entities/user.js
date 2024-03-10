@@ -13,14 +13,15 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  fullname: {
-    type: String,
-    required: true,
-  },
   password: {
     type: String,
     required: true,
   },
-});
-
+  usertype:{
+    type: String,
+    required: true,
+    enum:['ADMIN','PASSENGER','DRIVER','CONDUCTOR','CHECKER','AUDITOR','PARTNER','EMPLOYEE']
+  }
+})
+ 
 module.exports = mongoose.model("User", userSchema);
