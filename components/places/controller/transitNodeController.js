@@ -28,7 +28,7 @@ exports.createTransiteNode = (req, res, next) => {
 
 exports.checkIfTransitNodeExistsByNameEn = (req, res, next) => {
   TransiteNode.findOne({
-    name_en: req.name_en,
+    name_en: req.body.name_en,
   })
     .exec()
     .then((foundTrNode) => {
@@ -59,7 +59,7 @@ exports.generatePlaceId = (req, res, next) => {
   // Concatenate the prefix, first three characters, and numeric part
   const generatedId = req.body.province + firstThreeChars + randomNumericPart;
 
-  req.place_id = generatedId.toUpperCase() + "454545454";
+  req.place_id = generatedId.toUpperCase();
 
   next();
 };
@@ -71,7 +71,7 @@ exports.checkIfTransitNodeExistsByPlaceId = (req, res, next) => {
     .exec()
     .then((foundTrNode) => {
       if (foundTrNode) {
-        console.log(req.place_id);
+        console.log(foundTrNode);
         res.status(409).json({
           error: "Transit Node already exists",
           code: "TRANSIT_NODE_EXISTS",
@@ -81,3 +81,11 @@ exports.checkIfTransitNodeExistsByPlaceId = (req, res, next) => {
       }
     });
 };
+
+exports.deleteAllTransitNodes = (req, res, next) =>{
+  TransiteNode.deleteMany().exec().then(()=>{
+    res.status(200).json({
+      "msg": "deleted all TR nodes"
+    })
+  })
+}

@@ -11,4 +11,8 @@ routes.post('/add',
     tNodeController.checkIfTransitNodeExistsByPlaceId,
     tNodeController.createTransiteNode);
 
+//warning! only for dev purposes
+routes.delete('/delete/all', 
+tNodeController.deleteAllTransitNodes)
+
 module.exports = routes;
