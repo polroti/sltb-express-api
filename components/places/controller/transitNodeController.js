@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const TransiteNode = require("../models/transitnode");
+const TransiteNode = require("../models/TransitNode");
 
 exports.createTransiteNode = (req, res, next) => {
   const { name_en, name_ta, name_si, type, address, isStartOrEndNode, province } =
@@ -82,6 +82,17 @@ exports.checkIfTransitNodeExistsByPlaceId = (req, res, next) => {
     });
 };
 
+exports.updateTransitNode = (req, res, next) =>{
+  TransiteNode.findOne({
+    place_id: req.params.place_id
+  }).exec().then((foundOne)=>{
+    if(foundOne){
+      
+    }
+  })
+}
+
+//warning! only for dev purposes
 exports.deleteAllTransitNodes = (req, res, next) =>{
   TransiteNode.deleteMany().exec().then(()=>{
     res.status(200).json({

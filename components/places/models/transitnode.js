@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const transitNodeSchema = Schema({
+const TransitNodeSchema = Schema({
   _id: mongoose.Schema.Types.ObjectId,
   place_id: {
     type: String,
     required: true,
     unique: true,
-    maxLength: 10
+    maxlength: 10
   },
   name_en: {
     type: String,
@@ -42,4 +42,4 @@ const transitNodeSchema = Schema({
 
 });
 
-module.exports = mongoose.model('TransitNode',transitNodeSchema);
+module.exports = mongoose.model('TransitNode',TransitNodeSchema);
