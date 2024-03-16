@@ -82,19 +82,23 @@ exports.checkIfTransitNodeExistsByPlaceId = (req, res, next) => {
     });
 };
 
-exports.updateTransitNode = (req, res, next) =>{
-  TransiteNode.findOne({
+exports.updateTransitNode = (req, res, next) => {
+  const filter = {
     place_id: req.params.place_id
-  }).exec().then((foundOne)=>{
-    if(foundOne){
-      
-    }
+  }
+  TransiteNode.findOneAndUpdate(filter, req.body, {
+    new: true // returnOriginal:false is also applicable
+  }).exec().then((updatedTransitNode)=>{
+    res.status(200).json({
+      updatedTransitNode:updatedTransitNode,
+      "code":"TRANSIT_NODE_UPDATE"
+    })
   })
 }
 
 //warning! only for dev purposes
-exports.deleteAllTransitNodes = (req, res, next) =>{
-  TransiteNode.deleteMany().exec().then(()=>{
+exports.deleteAllTransitNodes = (req, res, next) => {
+  TransiteNode.deleteMany().exec().then(() => {
     res.status(200).json({
       "msg": "deleted all TR nodes"
     })

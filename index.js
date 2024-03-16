@@ -33,11 +33,9 @@ mongoose
   )
   .then(() => {
     console.log("Connected to MongoDB Cloud");
-    db = "Connected to MongoDB Cloud";
   })
   .catch(() => {
     console.log("Connection to MongoDB Cloud Failed");
-    db = "Cannot connect to MongoDB Cloud";
   });
 
 sltbApi.listen(PORT, () => {

@@ -8,21 +8,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/asimo-git/sltb-express-api.git"
+    "url": "git+https://github.com/polroti/sltb-express-api.git"
   },
   "keywords": [
     "sltb-express-api"
   ],
-  "author": "ASIMO IT",
+  "author": "polroti",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/asimo-git/sltb-express-api/issues"
+    "url": "https://github.com/polroti/sltb-express-api/issues"
   },
-  "homepage": "https://github.com/asimo-git/sltb-express-api#readme",
+  "homepage": "https://github.com/polroti/sltb-express-api#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.10.7"
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.2.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
