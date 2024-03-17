@@ -24,17 +24,12 @@ sltbApi.use('/api/transit/nodes', transitNodeRoute)
 //db connection
 mongoose
   .connect(
-    `mongodb+srv://${secrets.mongousername}:${secrets.mongopass}@${secrets.mongourl}/${dbName}`,
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,useCreateIndex:true
-
-    }
-  )
+    `mongodb+srv://${secrets.mongousername}:${secrets.mongopass}@${secrets.mongourl}/${dbName}`)
   .then(() => {
     console.log("Connected to MongoDB Cloud");
   })
-  .catch(() => {
+  .catch((e) => {
+    console.log(e);
     console.log("Connection to MongoDB Cloud Failed");
   });
 

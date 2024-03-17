@@ -6,7 +6,7 @@ exports.createTransiteNode = (req, res, next) => {
     req.body;
 
   const newTransitNode = new TransiteNode({
-    _id: mongoose.Types.ObjectId(),
+    _id: new mongoose.Types.ObjectId(),
     place_id: req.place_id,
     name_en: name_en,
     name_ta: name_ta,
@@ -88,11 +88,35 @@ exports.updateTransitNode = (req, res, next) => {
   }
   TransiteNode.findOneAndUpdate(filter, req.body, {
     new: true // returnOriginal:false is also applicable
-  }).exec().then((updatedTransitNode)=>{
+  }).exec().then((updatedTransitNode) => {
     res.status(200).json({
-      updatedTransitNode:updatedTransitNode,
-      "code":"TRANSIT_NODE_UPDATE"
+      updatedTransitNode: updatedTransitNode,
+      "code": "TRANSIT_NODE_UPDATED"
     })
+  })
+}
+
+exports.getAllTransitNodes = (req, res, next) => {
+  TransiteNode.find().exec().then((allTransitNodes) => {
+    if (allTransitNodes.length > 0) {
+      res.status(200).json({
+        data: allTransitNodes,
+        code: "ALL_TRANSIT_NODES"
+      })
+    }
+  })
+}
+
+exports.getSingleTransitNode = (req, res, next) => {
+  TransiteNode.findOne({
+    place_id: req.params.place_id
+  }).exec().then((singleTransitNode) => {
+    if (singleTransitNode) {
+      res.status(200).json({
+        data: singleTransitNode,
+        code: "SINGLE_TRANSIT_NODES"
+      })
+    }
   })
 }
 
@@ -101,6 +125,17 @@ exports.deleteAllTransitNodes = (req, res, next) => {
   TransiteNode.deleteMany().exec().then(() => {
     res.status(200).json({
       "msg": "deleted all TR nodes"
+    })
+  })
+}
+
+//warning! only for dev purposes
+exports.deleteSingleTransitNode = (req, res, next) => {
+  TransiteNode.findOneAndDelete({
+    place_id: req.params.place_id
+  }).exec().then(() => {
+    res.status(200).json({
+      "msg": "Deleted single transit node"
     })
   })
 }
