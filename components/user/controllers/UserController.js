@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
 const GenericUser = require('../models/User')
-const AdminUser = require('../models/Admin')
+
 
 const secrets = require('../../../secrets.json')
 

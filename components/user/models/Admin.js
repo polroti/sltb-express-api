@@ -2,10 +2,13 @@ const mongoose = require("mongoose");
 
 const adminUserSchema = new mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
-  fullname: {
+  firstName: {
     type: String,
     required: true,
-    unique: true,
+  },
+  lastName: {
+    type: String,
+    required: true,
   },
   email: {
     type: String,
@@ -20,6 +23,10 @@ const adminUserSchema = new mongoose.Schema({
     type: Boolean,
     required: true,
     default: true
+  }, 
+  user:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
   }
 })
  
