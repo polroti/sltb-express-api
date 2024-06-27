@@ -16,10 +16,12 @@ sltbApi.use(express.json());
 //Define Routes
 const bookingRoute = require("./components/booking/BookingRoutes");
 const transitNodeRoute = require("./components/places/routes/transitNodeRoutes");
+const userRoutes = require("./components/user/routes/UserRoutes");
 //Use Routes
 sltbApi.use("/api/booking", bookingRoute);
-
 sltbApi.use('/api/transit/nodes', transitNodeRoute)
+sltbApi.use('/api/users', userRoutes)
+
 
 //db connection
 mongoose

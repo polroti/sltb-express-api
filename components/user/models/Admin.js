@@ -28,6 +28,6 @@ const adminUserSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   }
-})
- 
-module.exports = mongoose.model("AdminUser", adminUserSchema);
+});
+
+module.exports = mongoose.model("Admin", adminUserSchema);

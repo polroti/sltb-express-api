@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
   usertype:{
     type: String,
     required: true,
-    enum:['ADMIN','PASSENGER','DRIVER','CONDUCTOR','CHECKER','AUDITOR','PARTNER','EMPLOYEE']
+    enum:['SUPER','ADMIN','PASSENGER','DRIVER','CONDUCTOR','CHECKER','AUDITOR','PARTNER','EMPLOYEE']
   }
 })
  
